@@ -7,6 +7,16 @@ All notable changes to this project will be documented in this file.
 The format is based on [Conventional Changelog](https://github.com/conventional-changelog/conventional-changelog-config-spec/blob/master/versions/2.2.0/README.md),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.1.1](https://github.com/liblaf/nox-recipes/releases/tag/v0.1.1) - 2026-03-22
+
+### ✨ Features
+
+- **pytest:** enable CodSpeed benchmark runs - [64b4faa](https://github.com/liblaf/nox-recipes/commit/64b4faaae7c8567feec15cfee9c684865725675c) by [@liblaf](https://github.com/liblaf)
+
+### ❤️ Contributors
+
+- [@liblaf](https://github.com/liblaf)
+
 ## [0.1.0](https://github.com/liblaf/nox-recipes/releases/tag/v0.1.0) - 2026-03-22
 
 ### ✨ Features
@@ -19,4 +29,5 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### ❤️ Contributors
 
+- [@liblaf[bot]](https://github.com/apps/liblaf) made their first contribution in [#2](https://github.com/liblaf/nox-recipes/pull/2)
 - [@liblaf](https://github.com/liblaf) made their first contribution
