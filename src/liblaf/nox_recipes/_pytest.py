@@ -21,9 +21,8 @@ def pytest(
 
 
 def pytest_bench(s: nox.Session, *, suppress_no_test_exit_code: bool = False) -> None:
-    args: list[StrPath] = ["pytest", "-m", "benchmark"]
+    args: list[StrPath] = ["pytest", "-m", "benchmark", "--codspeed"]
     plugins: dict[str, str] = pytest_plugin_versions(s)
-    print(plugins)
     if "pytest-xdist" in plugins:
         args.append("--numprocesses=0")
     success_codes: list[int] = [0]
@@ -34,15 +33,7 @@ def pytest_bench(s: nox.Session, *, suppress_no_test_exit_code: bool = False) ->
 
 def pytest_plugin_versions(s: nox.Session) -> dict[str, str]:
     output: str = cast(
-        "str",
-        s.run_always(
-            "pytest",
-            "--version",
-            "--version",
-            silent=True,
-            # stdout=subprocess.PIPE,
-            stderr=None,
-        ),
+        "str", s.run_always("pytest", "--version", "--version", silent=True)
     )
     plugins: dict[str, str] = {}
     for line in output.splitlines():

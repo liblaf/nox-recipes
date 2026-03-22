@@ -12,7 +12,7 @@ PYPROJECT: dict[str, Any] = nox.project.load_toml("pyproject.toml")
 PYTHON_VERSIONS: list[str] = nox.project.python_versions(PYPROJECT)
 
 
-@nox_uv.session(default=False, uv_groups=["test"], uv_quiet=True)
+@nox_uv.session(reuse_venv=True, default=False, uv_groups=["test"], uv_quiet=True)
 def bench(s: nox.Session) -> None:
     recipes.pytest_bench(s, suppress_no_test_exit_code=True)
 

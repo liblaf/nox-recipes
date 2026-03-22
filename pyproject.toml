@@ -44,6 +44,7 @@ docs = ["liblaf-mkdocs-preset>=0.3,<0.4", "mkdocs>=1,<2"]
 nox = ["nox-uv>=0.7"]
 test = [
   "pytest>=9,<10",
+  "pytest-codspeed>=4",
   "pytest-cov>=7",
   "pytest-randomly>=4",
   "pytest-xdist>=3"
