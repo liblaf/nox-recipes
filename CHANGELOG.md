@@ -7,6 +7,21 @@ All notable changes to this project will be documented in this file.
 The format is based on [Conventional Changelog](https://github.com/conventional-changelog/conventional-changelog-config-spec/blob/master/versions/2.2.0/README.md),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.1.2](https://github.com/liblaf/nox-recipes/releases/tag/v0.1.2) - 2026-03-22
+
+### 🐛 Bug Fixes
+
+- **nox:** align uv setup and session tagging across local tasks and CI - [2201e03](https://github.com/liblaf/nox-recipes/commit/2201e03246f590842012e9c6350a5aba5d7f8019) by [@liblaf](https://github.com/liblaf)
+- **pytest:** stop passing --cov-branch to pytest sessions - [7ba29b8](https://github.com/liblaf/nox-recipes/commit/7ba29b8e56ee4301632bd61a20329f5cc7cc4095) by [@liblaf](https://github.com/liblaf)
+
+### ⚙️ Continuous Integration
+
+- **nox:** remove benchmark session from default automation - [8570df7](https://github.com/liblaf/nox-recipes/commit/8570df7cea640da0914d18f22f674feaf8be96ae) by [@liblaf](https://github.com/liblaf)
+
+### ❤️ Contributors
+
+- [@liblaf](https://github.com/liblaf)
+
 ## [0.1.1](https://github.com/liblaf/nox-recipes/releases/tag/v0.1.1) - 2026-03-22
 
 ### ✨ Features
@@ -15,6 +30,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### ❤️ Contributors
 
+- [@liblaf[bot]](https://github.com/apps/liblaf)
 - [@liblaf](https://github.com/liblaf)
 
 ## [0.1.0](https://github.com/liblaf/nox-recipes/releases/tag/v0.1.0) - 2026-03-22
