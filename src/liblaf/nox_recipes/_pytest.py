@@ -19,7 +19,7 @@ def pytest(
 ) -> None:
     options: list[StrPath] = []
     if cov:
-        options.extend(["--cov", "--cov-branch"])
+        options.append("--cov")
     _pytest(
         s,
         *options,
