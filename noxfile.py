@@ -8,16 +8,17 @@ from liblaf.nox_recipes import Resolution
 
 nox.options.default_venv_backend = "uv"
 nox.options.reuse_existing_virtualenvs = True
+nox.options.tags = ["test"]
 PYPROJECT: dict[str, Any] = nox.project.load_toml("pyproject.toml")
 PYTHON_VERSIONS: list[str] = nox.project.python_versions(PYPROJECT)
 
 
-@nox_uv.session(reuse_venv=True, default=False, uv_groups=["test"], uv_quiet=True)
+@nox_uv.session(reuse_venv=True, tags=["bench"], uv_groups=["test"], uv_quiet=True)
 def bench(s: nox.Session) -> None:
     recipes.pytest_bench(s, suppress_no_test_exit_code=True)
 
 
-@nox.session(python=PYTHON_VERSIONS, reuse_venv=True)
+@nox.session(python=PYTHON_VERSIONS, reuse_venv=True, tags=["test"])
 @nox.parametrize(
     "resolution",
     [

@@ -20,17 +20,21 @@ jobs:
     name: Collect
     runs-on: ubuntu-latest
     outputs:
-      sessions: ${{ steps.list.outputs.sessions }}
+      sessions: ${{ steps.collect.outputs.sessions }}
     steps:
       - name: Checkout
         uses: actions/checkout@v6
-      - name: Setup Python
-        uses: liblaf/actions/setup-python@v1
-      - id: list
-        name: List Sessions
+      - name: Setup uv
+        uses: astral-sh/setup-uv@v7
+        with:
+          activate-environment: true
+      - name: Install Dependencies
+        run: uv sync --active --frozen --all-packages
+      - id: collect
+        name: Collect
         run: |-
           echo "sessions=$(
-            nox --list-sessions --json |
+            nox --list-sessions --json --tags 'test' |
               jq --compact-output '[.[].session]'
           )" >> "$GITHUB_OUTPUT"
 
@@ -47,8 +51,12 @@ jobs:
         uses: actions/checkout@v6
         with:
           fetch-depth: 0 # I don't know why, but it is present in Codecov's documentation
-      - name: Setup Python
-        uses: liblaf/actions/setup-python@v1
+      - name: Setup uv
+        uses: astral-sh/setup-uv@v7
+        with:
+          activate-environment: true
+      - name: Install Dependencies
+        run: uv sync --active --frozen --all-packages
       - name: Test
         run: nox --session '${{ matrix.session }}'
       - if: success() || failure()
