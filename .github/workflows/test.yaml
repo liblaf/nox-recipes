@@ -49,8 +49,6 @@ jobs:
           fetch-depth: 0 # I don't know why, but it is present in Codecov's documentation
       - name: Setup Python
         uses: liblaf/actions/setup-python@v1
-      - name: Setup Nox
-        uses: wntrblm/nox@main
       - name: Test
         run: nox --session '${{ matrix.session }}'
       - if: success() || failure()
