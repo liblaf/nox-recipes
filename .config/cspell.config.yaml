@@ -18,6 +18,7 @@ words:
   - direnv
   - fieldz
   - getattr
+  - grimp
   - hynek
   - inlinehilite
   - liblaf
@@ -25,11 +26,11 @@ words:
   - mkdocstrings
   - numprocesses
   - numpy
+  - nvml
   - pycache
   - pydantic
   - pydocstyle
   - pylint
-  - pylock
   - pymdownx
   - pypa
   - pypi
@@ -44,5 +45,4 @@ words:
   - uuidgen
   - venv
   - virtualenv
-  - wntrblm
   - xdist

@@ -25,7 +25,7 @@ classifiers = [
   "Programming Language :: Python :: 3.14",
   "Typing :: Typed"
 ]
-dependencies = ["lazy-loader>=0.1", "nox>=2025.2.9"]
+dependencies = ["lazy-loader>=0.1", "nox>=2025.2.9", "nvidia-ml-py>=10"]
 dynamic = ["version"]
 
 [project.urls]
@@ -39,11 +39,12 @@ dynamic = ["version"]
 "Source Code" = "https://github.com/liblaf/nox-recipes"
 
 [dependency-groups]
-build = ["check-wheel-contents>=0.6,<0.7", "hatch>=1,<2", "twine>=6,<7"]
-docs = ["liblaf-mkdocs-preset>=0.3,<0.4", "mkdocs>=1,<2"]
+build = ["check-wheel-contents>=0.6", "hatch>=1", "twine>=6"]
+docs = ["liblaf-mkdocs-preset>=0.3", "mkdocs>=1,<2"]
+lint = ["import-linter[ui]>=2", "ruff>=0.15"]
 nox = ["nox-uv>=0.7"]
 test = [
-  "pytest>=9,<10",
+  "pytest>=9",
   "pytest-codspeed>=4",
   "pytest-cov>=7",
   "pytest-randomly>=4",
@@ -72,6 +73,14 @@ packages = ["src/liblaf"]
 
 [tool.hatch.version]
 source = "vcs"
+
+[tool.importlinter]
+root_package = "liblaf.nox_recipes"
+
+[[tool.importlinter.contracts]]
+ancestors = ["liblaf.nox_recipes"]
+name = "Acyclic siblings"
+type = "acyclic_siblings"
 
 [tool.pyright]
 extends = ".config/linters/pyrightconfig.json"
