@@ -7,6 +7,16 @@ All notable changes to this project will be documented in this file.
 The format is based on [Conventional Changelog](https://github.com/conventional-changelog/conventional-changelog-config-spec/blob/master/versions/2.2.0/README.md),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.1.4](https://github.com/liblaf/nox-recipes/releases/tag/v0.1.4) - 2026-03-24
+
+### ✨ Features
+
+- **cuda:** expose CUDA driver version helper - [756f4e1](https://github.com/liblaf/nox-recipes/commit/756f4e152346e3cffcaa984afe30da232c6ca6fa) by [@liblaf](https://github.com/liblaf)
+
+### ❤️ Contributors
+
+- [@liblaf](https://github.com/liblaf)
+
 ## [0.1.3](https://github.com/liblaf/nox-recipes/releases/tag/v0.1.3) - 2026-03-24
 
 ### ✨ Features
@@ -15,6 +25,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### ❤️ Contributors
 
+- [@liblaf[bot]](https://github.com/apps/liblaf)
 - [@liblaf](https://github.com/liblaf)
 
 ## [0.1.2](https://github.com/liblaf/nox-recipes/releases/tag/v0.1.2) - 2026-03-22
