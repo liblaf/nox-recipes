@@ -1,14 +1,21 @@
 import pynvml
 
 
-def supports_cuda(version: int | None = None) -> bool:
+def cuda_driver_version() -> int | None:
     try:
         pynvml.nvmlInit()
-        cuda_version: int = pynvml.nvmlSystemGetCudaDriverVersion_v2()
+        version: int = pynvml.nvmlSystemGetCudaDriverVersion_v2()
         pynvml.nvmlShutdown()
     except pynvml.NVMLError:
-        return False
+        return None
     else:
-        if version is None:
-            return True
-        return cuda_version >= version
+        return version
+
+
+def supports_cuda(version: int | None = None) -> bool:
+    cuda_version: int | None = cuda_driver_version()
+    if cuda_version is None:
+        return False
+    if version is None:
+        return True
+    return cuda_version >= version
