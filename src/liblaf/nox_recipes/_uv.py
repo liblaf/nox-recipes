@@ -1,3 +1,5 @@
+"""Helpers for bootstrapping `uv`-managed environments in `nox`."""
+
 from __future__ import annotations
 
 import enum
@@ -13,6 +15,18 @@ if TYPE_CHECKING:
 
 
 class Resolution(enum.StrEnum):
+    """Dependency resolution strategies supported by `uv pip`.
+
+    Attributes:
+        HIGHEST:
+            Prefer the newest compatible versions.
+        LOWEST:
+            Prefer the oldest compatible versions across the graph.
+        LOWEST_DIRECT:
+            Prefer the oldest compatible versions for direct dependencies while
+            still allowing newer transitive requirements when needed.
+    """
+
     HIGHEST = "highest"
     LOWEST = "lowest"
     LOWEST_DIRECT = "lowest-direct"
@@ -27,6 +41,29 @@ def setup_uv(
     resolution: Resolution | None = None,
     quiet: bool = True,
 ) -> None:
+    """Create and sync a session environment from `pyproject.toml`.
+
+    `setup_uv()` is the high-level helper for most projects. It compiles a
+    constraints file, compiles the requested requirements against those
+    constraints, syncs the session environment, and finally installs the current
+    project in editable mode.
+
+    Args:
+        s:
+            The active `nox` session.
+        extras:
+            Project extras to include while compiling and installing.
+        all_extras:
+            Whether to include every defined extra.
+        groups:
+            Dependency groups to include when compiling the session
+            requirements.
+        resolution:
+            Optional dependency resolution strategy for the initial constraints
+            compile.
+        quiet:
+            Whether to ask `uv` for quieter output.
+    """
     with tempfile.TemporaryDirectory() as tmpdir_str:
         tmpdir: Path = Path(tmpdir_str)
         constraints: Path = tmpdir / "constraints.txt"
@@ -63,6 +100,28 @@ def uv_pip_compile(
     resolution: Resolution | None = None,
     quiet: bool = True,
 ) -> None:
+    """Run `uv pip compile` against the current project's `pyproject.toml`.
+
+    Args:
+        s:
+            The active `nox` session.
+        *options:
+            Additional command-line options appended before `pyproject.toml`.
+        constraints:
+            Compiled requirement files passed with `--constraints`.
+        extras:
+            Project extras enabled during compilation.
+        all_extras:
+            Whether to enable every defined extra.
+        groups:
+            Dependency groups enabled during compilation.
+        output_file:
+            Optional destination file passed with `--output-file`.
+        resolution:
+            Optional dependency resolution strategy for `uv`.
+        quiet:
+            Whether to ask `uv` for quieter output.
+    """
     args: list[StrPath] = ["uv", "pip", "compile"]
     for constraint in constraints:
         args.extend(("--constraints", constraint))
@@ -87,6 +146,16 @@ def uv_pip_compile(
 
 
 def uv_pip_sync(s: nox.Session, *src_files: StrPath, quiet: bool = True) -> None:
+    """Run `uv pip sync` for one or more compiled requirement files.
+
+    Args:
+        s:
+            The active `nox` session.
+        *src_files:
+            Requirement files consumed by `uv pip sync`.
+        quiet:
+            Whether to ask `uv` for quieter output.
+    """
     args: list[StrPath] = ["uv", "pip", "sync"]
     if isinstance(s.python, str):
         args.extend(("--python-version", s.python))
@@ -109,6 +178,30 @@ def uv_pip_install(
     resolution: Resolution | None = None,
     quiet: bool = True,
 ) -> None:
+    """Run `uv pip install` with session-oriented defaults.
+
+    Args:
+        s:
+            The active `nox` session.
+        *options:
+            Additional command-line options forwarded to `uv pip install`.
+        constraints:
+            Compiled requirement files passed with `--constraints`.
+        editables:
+            Editable paths installed with `--editable`.
+        extras:
+            Project extras enabled during installation.
+        all_extras:
+            Whether to enable every defined extra.
+        groups:
+            Dependency groups enabled during installation.
+        no_deps:
+            Whether to pass `--no-deps`.
+        resolution:
+            Optional dependency resolution strategy for `uv`.
+        quiet:
+            Whether to ask `uv` for quieter output.
+    """
     args: list[StrPath] = ["uv", "pip", "install"]
     for constraint in constraints:
         args.extend(("--constraints", constraint))

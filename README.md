@@ -2,7 +2,7 @@
 
 ![nox-recipes](https://socialify.git.ci/liblaf/nox-recipes/image?description=1&forks=1&issues=1&language=1&name=1&owner=1&pattern=Transparent&pulls=1&stargazers=1&theme=Auto)
 
-**[Explore the docs »](https://liblaf.github.io/nox-recipes/)**
+**[Explore the docs »](https://liblaf-nox-recipes.readthedocs.io/)**
 
 [![PyPI - Version](https://img.shields.io/pypi/v/liblaf-nox-recipes?logo=PyPI)](https://pypi.org/project/liblaf-nox-recipes/)
 [![PyPI - Python Version](https://img.shields.io/pypi/pyversions/liblaf-nox-recipes?logo=python)](https://pypi.org/project/liblaf-nox-recipes/)
@@ -14,7 +14,7 @@
 [![Ruff](https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/astral-sh/ruff/main/assets/badge/v2.json)](https://github.com/astral-sh/ruff)
 [![uv](https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/astral-sh/uv/main/assets/badge/v0.json)](https://github.com/astral-sh/uv)
 
-[Documentation](https://liblaf.github.io/nox-recipes/) · [API Reference](https://liblaf.github.io/nox-recipes/reference/) · [Changelog](https://github.com/liblaf/nox-recipes/blob/main/CHANGELOG.md) · [Report Bug](https://github.com/liblaf/nox-recipes/issues) · [Request Feature](https://github.com/liblaf/nox-recipes/issues)
+[Documentation](https://liblaf-nox-recipes.readthedocs.io/) · [API Reference](https://liblaf-nox-recipes.readthedocs.io/en/latest/reference/) · [Changelog](https://github.com/liblaf/nox-recipes/blob/main/CHANGELOG.md) · [Report Bug](https://github.com/liblaf/nox-recipes/issues) · [Request Feature](https://github.com/liblaf/nox-recipes/issues)
 
 ![Rule](https://cdn.jsdelivr.net/gh/andreasbm/readme/assets/lines/rainbow.png)
 

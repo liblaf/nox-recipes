@@ -4,12 +4,18 @@
 # Basics
 site_name = "Nox Recipes"
 site_url = "__SITE_URL__"
-site_description = ""
+site_description = "Composable helpers for uv-first nox sessions."
 site_author = "liblaf"
 # Navigation
 nav = [
   { "Home" = "README.md" },
-  { "API Reference" = "reference/README.md" },
+  { "User Guide" = "guide/README.md" },
+  { "API Reference" = [
+    { "Overview" = "reference/README.md" },
+    { "uv Helpers" = "reference/uv.md" },
+    { "pytest Helpers" = "reference/pytest.md" },
+    { "CUDA Helpers" = "reference/cuda.md" },
+  ] },
 ]
 # Repository
 repo_url = "https://github.com/liblaf/nox-recipes"

@@ -1,3 +1,5 @@
+"""Wrappers around `pytest` for common `nox` session layouts."""
+
 from __future__ import annotations
 
 from collections.abc import Mapping
@@ -17,6 +19,21 @@ def pytest(
     env: Mapping[str, str | None] | None = None,
     suppress_no_test_exit_code: bool = False,
 ) -> None:
+    """Run `pytest` for the current session.
+
+    Args:
+        s:
+            The active `nox` session.
+        cov:
+            Whether to pass `--cov` to `pytest`.
+        eager_import:
+            Whether to set `EAGER_IMPORT=1` for the test command.
+        env:
+            Extra environment variables merged into the `pytest` process.
+        suppress_no_test_exit_code:
+            Whether to treat `pytest` exit code `5` ("no tests collected") as a
+            successful run.
+    """
     options: list[StrPath] = []
     if cov:
         options.append("--cov")
@@ -36,6 +53,23 @@ def pytest_bench(
     env: Mapping[str, str | None] | None = None,
     suppress_no_test_exit_code: bool = False,
 ) -> None:
+    """Run the benchmark subset with CodSpeed-friendly defaults.
+
+    This helper runs `pytest -m benchmark --codspeed`. If `pytest-xdist` is
+    installed in the session environment, it also adds `--numprocesses=0` so
+    benchmarks stay single-process and deterministic.
+
+    Args:
+        s:
+            The active `nox` session.
+        eager_import:
+            Whether to set `EAGER_IMPORT=1` for the test command.
+        env:
+            Extra environment variables merged into the `pytest` process.
+        suppress_no_test_exit_code:
+            Whether to treat `pytest` exit code `5` ("no tests collected") as a
+            successful run.
+    """
     options: list[StrPath] = ["-m", "benchmark", "--codspeed"]
     plugins: dict[str, str] = pytest_plugin_versions(s)
     if "pytest-xdist" in plugins:
@@ -50,6 +84,18 @@ def pytest_bench(
 
 
 def pytest_plugin_versions(s: nox.Session) -> dict[str, str]:
+    """Return installed `pytest` plugin versions for the session.
+
+    The result is parsed from `pytest --version --version`, which reports each
+    discovered plugin on its own line.
+
+    Args:
+        s:
+            The active `nox` session.
+
+    Returns:
+        A mapping of plugin distribution names to their installed versions.
+    """
     output: str = cast(
         "str", s.run_always("pytest", "--version", "--version", silent=True)
     )
@@ -70,12 +116,11 @@ def _pytest(
     env: Mapping[str, str | None] | None = None,
     suppress_no_test_exit_code: bool = False,
 ) -> None:
-    env: dict[str, str | None] = {}
+    """Run `pytest` with shared option and environment handling."""
+    cmd_env: dict[str, str | None] = dict(env or {})
     if eager_import:
-        env["EAGER_IMPORT"] = "1"
-    if env is not None:
-        env.update(env)
+        cmd_env["EAGER_IMPORT"] = "1"
     success_codes: list[int] = [0]
     if suppress_no_test_exit_code:
         success_codes.append(5)
-    s.run("pytest", *options, *s.posargs, env=env, success_codes=success_codes)
+    s.run("pytest", *options, *s.posargs, env=cmd_env, success_codes=success_codes)
