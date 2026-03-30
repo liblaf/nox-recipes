@@ -1,4 +1,4 @@
-#:schema https://json.schemastore.org/pyproject.json
+#:schema https://raw.githubusercontent.com/SchemaStore/schemastore/master/src/schemas/json/pyproject.json
 # ref: <https://packaging.python.org/en/latest/specifications/pyproject-toml/>
 
 [project]
@@ -40,16 +40,17 @@ dynamic = ["version"]
 
 [dependency-groups]
 build = ["check-wheel-contents>=0.6", "hatch>=1", "twine>=6"]
-docs = ["liblaf-mkdocs-preset>=0.3", "mkdocs>=1,<2"]
+docs = [
+  "griffe-fieldz>=0.5",
+  "griffe-inherited-docstrings>=1",
+  "griffe-pydantic>=1",
+  "griffe-warnings-deprecated>=1",
+  "mkdocstrings[python]>=1",
+  "zensical>=0.0.30"
+]
 lint = ["import-linter[ui]>=2", "ruff>=0.15"]
 nox = ["nox-uv>=0.7"]
-test = [
-  "pytest>=9",
-  "pytest-codspeed>=4",
-  "pytest-cov>=7",
-  "pytest-randomly>=4",
-  "pytest-xdist>=3"
-]
+test = ["pytest>=9", "pytest-cov>=7", "pytest-randomly>=4", "pytest-xdist>=3"]
 
 [build-system]
 requires = ["hatch-vcs", "hatchling"]
@@ -82,20 +83,20 @@ ancestors = ["liblaf.nox_recipes"]
 name = "Acyclic siblings"
 type = "acyclic_siblings"
 
-[tool.pyright]
-extends = ".config/linters/pyrightconfig.json"
-
 [tool.pytest]
-addopts = ["--doctest-modules", "--import-mode=importlib", "--showlocals"]
+addopts = [
+  "--doctest-modules",
+  "--import-mode=importlib",
+  "--junitxml=junit.xml",
+  "--showlocals"
+]
 consider_namespace_packages = true
+junit_family = "legacy"
 strict = true
 testpaths = ["benches", "src", "tests"]
 
 [tool.ruff]
 extend = ".config/linters/.ruff.toml"
-
-[tool.ty.environment]
-python = ".venv"
 
 [tool.uv]
 default-groups = "all"

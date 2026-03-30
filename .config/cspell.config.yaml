@@ -15,6 +15,7 @@ maxFileSize: 500KB
 useGitignore: true
 words:
   - arithmatex
+  - cuda
   - direnv
   - fieldz
   - getattr
@@ -22,27 +23,30 @@ words:
   - hynek
   - inlinehilite
   - liblaf
+  - linenums
+  - lucide
   - mkdocs
   - mkdocstrings
-  - numprocesses
   - numpy
   - nvml
   - pycache
   - pydantic
   - pydocstyle
+  - pygments
   - pylint
   - pymdownx
   - pypa
   - pypi
   - pyplot
   - pyproject
-  - pyrightconfig
   - pytest
   - pyvista
   - sdist
   - tombi
   - trimesh
+  - twemoji
   - uuidgen
   - venv
   - virtualenv
   - xdist
+  - zensical
