@@ -7,6 +7,17 @@ All notable changes to this project will be documented in this file.
 The format is based on [Conventional Changelog](https://github.com/conventional-changelog/conventional-changelog-config-spec/blob/master/versions/2.2.0/README.md),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.1.5](https://github.com/liblaf/nox-recipes/releases/tag/v0.1.5) - 2026-03-30
+
+### 🛠 Builds
+
+- **docs:** migrate site generation to zensical - [13a7a4a](https://github.com/liblaf/nox-recipes/commit/13a7a4ac63cf69b0826639faca3550d6f4d2f52e) by [@liblaf](https://github.com/liblaf)
+
+### ❤️ Contributors
+
+- [@renovate[bot]](https://github.com/apps/renovate) made their first contribution in [#11](https://github.com/liblaf/nox-recipes/pull/11)
+- [@liblaf](https://github.com/liblaf)
+
 ## [0.1.4](https://github.com/liblaf/nox-recipes/releases/tag/v0.1.4) - 2026-03-24
 
 ### ✨ Features
@@ -15,6 +26,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### ❤️ Contributors
 
+- [@liblaf[bot]](https://github.com/apps/liblaf)
 - [@liblaf](https://github.com/liblaf)
 
 ## [0.1.3](https://github.com/liblaf/nox-recipes/releases/tag/v0.1.3) - 2026-03-24
