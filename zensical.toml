@@ -3,7 +3,7 @@
 [project]
 # Basics
 site_name = "Nox Recipes"
-site_url = "$SITE_URL"
+site_url = "__SITE_URL__"
 site_description = ""
 site_author = "liblaf"
 # Navigation
@@ -15,6 +15,7 @@ nav = [
 repo_url = "https://github.com/liblaf/nox-recipes"
 edit_uri = "edit/main/docs/"
 
+# ref: <https://zensical.org/docs/setup/extensions/#default-configuration>
 [project.markdown_extensions.abbr]
 
 [project.markdown_extensions.admonition]
@@ -41,6 +42,7 @@ smart_enable = "all"
 emoji_generator = "zensical.extensions.emoji.to_svg"
 emoji_index = "zensical.extensions.emoji.twemoji"
 
+# ref: <https://zensical.org/docs/authoring/code-blocks/>
 [project.markdown_extensions.pymdownx.highlight]
 anchor_linenums = true
 line_spans = "__span"
