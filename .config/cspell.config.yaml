@@ -30,11 +30,14 @@ words:
   - numpy
   - nvml
   - pipx
+  - posargs
   - pycache
   - pydantic
   - pydocstyle
   - pygments
+  - pylint
   - pymdownx
+  - pynvml
   - pypa
   - pypi
   - pyplot

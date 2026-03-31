@@ -1,44 +1,42 @@
 <div align="center" markdown>
 
-![nox-recipes](https://socialify.git.ci/liblaf/nox-recipes/image?description=1&forks=1&issues=1&language=1&name=1&owner=1&pattern=Transparent&pulls=1&stargazers=1&theme=Auto)
+![Nox Recipes](https://socialify.git.ci/liblaf/nox-recipes/image?description=1&forks=1&issues=1&language=1&name=1&owner=1&pattern=Transparent&pulls=1&stargazers=1&theme=Auto)
 
-**[Explore the docs »](https://liblaf-nox-recipes.readthedocs.io/)**
+**[Explore the docs »](https://liblaf-nox-recipes.readthedocs.io/en/stable/)**
 
 [![PyPI - Version](https://img.shields.io/pypi/v/liblaf-nox-recipes?logo=PyPI)](https://pypi.org/project/liblaf-nox-recipes/)
-[![PyPI - Python Version](https://img.shields.io/pypi/pyversions/liblaf-nox-recipes?logo=python)](https://pypi.org/project/liblaf-nox-recipes/)
-[![PyPI - Downloads](https://img.shields.io/pypi/dm/liblaf-nox-recipes?logo=PyPI)](https://pypi.org/project/liblaf-nox-recipes/)
-[![Python / Docs](https://github.com/liblaf/nox-recipes/actions/workflows/python-docs.yaml/badge.svg)](https://github.com/liblaf/nox-recipes/actions/workflows/python-docs.yaml)
-[![Python / Test](https://github.com/liblaf/nox-recipes/actions/workflows/python-test.yaml/badge.svg)](https://github.com/liblaf/nox-recipes/actions/workflows/python-test.yaml)
-[![Python / Bench](https://github.com/liblaf/nox-recipes/actions/workflows/python-bench.yaml/badge.svg)](https://github.com/liblaf/nox-recipes/actions/workflows/python-bench.yaml)
-[![MegaLinter](https://github.com/liblaf/nox-recipes/actions/workflows/shared-mega-linter.yaml/badge.svg)](https://github.com/liblaf/nox-recipes/actions/workflows/shared-mega-linter.yaml)
-[![Ruff](https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/astral-sh/ruff/main/assets/badge/v2.json)](https://github.com/astral-sh/ruff)
-[![uv](https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/astral-sh/uv/main/assets/badge/v0.json)](https://github.com/astral-sh/uv)
+[![PyPI - Python Version](https://img.shields.io/pypi/pyversions/liblaf-nox-recipes?logo=Python)](https://pypi.org/project/liblaf-nox-recipes/)
+[![Docs](https://github.com/liblaf/nox-recipes/actions/workflows/python-docs.yaml/badge.svg)](https://liblaf-nox-recipes.readthedocs.io/en/stable/)
+[![Test](https://github.com/liblaf/nox-recipes/actions/workflows/python-test.yaml/badge.svg)](https://github.com/liblaf/nox-recipes/actions/workflows/python-test.yaml)
+[![Codecov](https://codecov.io/gh/liblaf/nox-recipes/graph/badge.svg)](https://codecov.io/gh/liblaf/nox-recipes)
+[![License](https://img.shields.io/github/license/liblaf/nox-recipes)](https://github.com/liblaf/nox-recipes/blob/main/LICENSE)
 
-[Documentation](https://liblaf-nox-recipes.readthedocs.io/) · [API Reference](https://liblaf-nox-recipes.readthedocs.io/en/latest/reference/) · [Changelog](https://github.com/liblaf/nox-recipes/blob/main/CHANGELOG.md) · [Report Bug](https://github.com/liblaf/nox-recipes/issues) · [Request Feature](https://github.com/liblaf/nox-recipes/issues)
+[Changelog](https://github.com/liblaf/nox-recipes/blob/main/CHANGELOG.md) · [Releases](https://github.com/liblaf/nox-recipes/releases) · [Report Bug](https://github.com/liblaf/nox-recipes/issues) · [Request Feature](https://github.com/liblaf/nox-recipes/issues)
 
 ![Rule](https://cdn.jsdelivr.net/gh/andreasbm/readme/assets/lines/rainbow.png)
 
 </div>
 
+`liblaf-nox-recipes` keeps `noxfile.py` sessions small by packaging the `uv`, `pytest`, and CUDA glue you would otherwise repeat across repositories.
+
 ## ✨ Features
 
-- **`uv`-first session bootstrap**: compile constraints, sync environments, and install your project in editable mode with a couple of lines in `noxfile.py`.
-- **Thin `pytest` wrappers**: run regular test sessions with coverage or benchmark sessions with CodSpeed-friendly defaults.
-- **Dependency resolution coverage**: exercise `highest`, `lowest`, or `lowest-direct` dependency sets without duplicating session logic.
-- **CUDA-aware skips**: keep GPU-only jobs polite on machines without an NVIDIA driver.
+- 💨 **Bootstrap `uv`-managed environments in one call:** `setup_uv()` compiles constraints from `pyproject.toml`, resolves the dependency groups you ask for, syncs the session environment, and installs the current project in editable mode.
+- 📉 **Exercise multiple dependency strategies:** `Resolution` exposes `highest`, `lowest`, and `lowest-direct` modes so you can cover both everyday development and lower-bound compatibility in CI.
+- 🧪 **Keep test sessions short without hiding `pytest`:** `pytest()` forwards `s.posargs`, supports per-session environment variables, and keeps shared flags out of each `@nox.session`.
+- ⚡ **Run CodSpeed-friendly benchmarks:** `pytest_bench()` adds the benchmark marker, `--codspeed`, and single-process defaults when helpers like `pytest-xdist` are installed.
+- 🖥️ **Skip GPU-only jobs safely:** `supports_cuda()` and `cuda_driver_version()` use NVML to decide whether CUDA-specific sessions should run.
 
 ## 📦 Installation
 
 > [!NOTE]
-> Install `liblaf-nox-recipes`, then import it as `liblaf.nox_recipes`.
-
-`nox-recipes` supports Python 3.12, 3.13, and 3.14.
+> `liblaf-nox-recipes` requires Python 3.12+ and expects `uv` to be available anywhere your `nox` sessions run.
 
 ```bash
 uv add --dev liblaf-nox-recipes
 ```
 
-If you use `setup_uv()`, make sure the `uv` CLI is available anywhere `nox` runs.
+If you also want `uv` to create and manage the virtual environments that `nox` uses, install `nox-uv` and set `nox.options.default_venv_backend = "uv"` in your `noxfile.py`.
 
 ## 🚀 Quick Start
 
@@ -65,57 +63,36 @@ PYTHON_VERSIONS: list[str] = nox.project.python_versions(PYPROJECT)
         nox.param(Resolution.LOWEST_DIRECT, id="lowest-direct"),
     ],
 )
-def test(s: nox.Session, resolution: Resolution | None) -> None:
+def test(s: nox.Session, resolution: Resolution) -> None:
     recipes.setup_uv(s, groups=["test"], resolution=resolution)
     recipes.pytest(s, suppress_no_test_exit_code=True)
 ```
 
-This gives each session a reproducible `uv`-managed environment, installs your project in editable mode, and runs `pytest` with sensible defaults. `Resolution` lets you probe different parts of your dependency graph without copying setup code into multiple sessions.
-
-## 🧰 Included Recipes
-
-| Helper | Purpose |
-| --- | --- |
-| `setup_uv()` | Compile constraints, compile requirements, sync the session environment, and install `.` in editable mode. |
-| `uv_pip_compile()` | Wrap `uv pip compile` for extras, groups, constraints, and resolution strategies. |
-| `uv_pip_sync()` | Sync an environment from one or more compiled requirement files with `--strict`. |
-| `uv_pip_install()` | Install editables, extras, groups, or constrained dependencies with `uv pip install`. |
-| `pytest()` | Run `pytest` with optional coverage and optional suppression for the "no tests collected" exit code. |
-| `pytest_bench()` | Run `pytest -m benchmark --codspeed`, adjusting for `pytest-xdist` when present. |
-| `pytest_plugin_versions()` | Inspect installed `pytest` plugin versions inside a session. |
-| `supports_cuda()` / `cuda_driver_version()` | Detect whether CUDA-backed sessions should run. |
-
-## 🖥️ GPU-Only Sessions
-
-```python
-@nox.session(tags=["gpu"])
-def smoke_cuda(s: nox.Session) -> None:
-    if not recipes.supports_cuda():
-        s.skip("CUDA driver not available")
-
-    recipes.setup_uv(s, groups=["test"])
-    s.run("python", "-c", "print('CUDA is available')")
-```
-
-This is useful when the same repository needs CPU-safe local runs and optional GPU jobs on dedicated runners.
+Start with `setup_uv()` for the common case. When you need finer control, drop down to `uv_pip_compile()`, `uv_pip_sync()`, and `uv_pip_install()` directly. For GPU-only jobs, guard the session with `supports_cuda()` before doing any CUDA-dependent work.
 
 ## ⌨️ Local Development
 
 ```bash
 git clone https://github.com/liblaf/nox-recipes.git
 cd nox-recipes
-uv sync --all-packages
+mise run install
 nox
+mise run docs:serve
 ```
 
-The documentation site includes this root README, so improving examples here also improves the published docs.
+`nox` executes the test-tagged matrix from `noxfile.py`, and `mise run docs:serve` rebuilds the docs site that also embeds this README.
 
 ## 🤝 Contributing
 
-Issues and pull requests are welcome. The most helpful contributions are usually small, focused improvements to the recipe surface area, docs, or real-world `noxfile.py` examples.
+Focused issues and pull requests are welcome. Please run `nox` before opening a PR, and rebuild the docs with `mise run docs:serve` when you change documentation or public APIs.
 
-## 📄 License
+[![PR WELCOME](https://img.shields.io/badge/%F0%9F%A4%AF%20PR%20WELCOME-%E2%86%92-ffcb47?labelColor=black&style=for-the-badge)](https://github.com/liblaf/nox-recipes/pulls)
 
-Copyright © 2026 [liblaf](https://github.com/liblaf).
+[![Contributors](https://gh-contributors-gamma.vercel.app/api?repo=liblaf/nox-recipes)](https://github.com/liblaf/nox-recipes/graphs/contributors)
 
+---
+
+#### 📝 License
+
+Copyright © 2026 [liblaf](https://github.com/liblaf). <br />
 This project is [MIT](https://github.com/liblaf/nox-recipes/blob/main/LICENSE) licensed.
