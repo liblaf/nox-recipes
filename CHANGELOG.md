@@ -7,6 +7,20 @@ All notable changes to this project will be documented in this file.
 The format is based on [Conventional Changelog](https://github.com/conventional-changelog/conventional-changelog-config-spec/blob/master/versions/2.2.0/README.md),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [v0.1.6](https://github.com/liblaf/nox-recipes/releases/tag/v0.1.6) - 2026-04-02
+
+### ⚙️ Continuous Integrations
+
+- **(deps)** update codspeedhq/action digest to d872884 (#19) - [0c48a3e](https://github.com/liblaf/nox-recipes/commit/0c48a3e62224616b0528412ca3728430e92dd461) by [@renovate[bot]](https://github.com/apps/renovate) in [#19](https://github.com/liblaf/nox-recipes/pull/19)
+- **(deps)** update taiki-e/install-action digest to bfadeab (#21) - [e529b61](https://github.com/liblaf/nox-recipes/commit/e529b61dfd2d99272cc31da5119389606db9f5e7) by [@renovate[bot]](https://github.com/apps/renovate) in [#21](https://github.com/liblaf/nox-recipes/pull/21)
+- **(deps)** update taiki-e/install-action digest to a1df912 (#22) - [3f14fcd](https://github.com/liblaf/nox-recipes/commit/3f14fcd0bf86a650e31eb454681501b69b0b437f) by [@renovate[bot]](https://github.com/apps/renovate) in [#22](https://github.com/liblaf/nox-recipes/pull/22)
+- **(deps)** update taiki-e/install-action digest to 0cccd59 (#23) - [72e17f0](https://github.com/liblaf/nox-recipes/commit/72e17f016aa1b4ff17a8d078ffd8105b4a6c483d) by [@renovate[bot]](https://github.com/apps/renovate) in [#23](https://github.com/liblaf/nox-recipes/pull/23)
+- **(deps)** update taiki-e/install-action digest to d858f81 (#24) - [d2e7d39](https://github.com/liblaf/nox-recipes/commit/d2e7d392000a01ce2535072b760223151acb833b) by [@renovate[bot]](https://github.com/apps/renovate) in [#24](https://github.com/liblaf/nox-recipes/pull/24)
+
+### ❤️ Contributors
+
+- [@renovate[bot]](https://github.com/apps/renovate)
+
 ## [v0.1.5](https://github.com/liblaf/nox-recipes/releases/tag/v0.1.5) - 2026-03-31
 
 ### 🐛 Bug Fixes
@@ -27,6 +41,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### ❤️ Contributors
 
+- [@liblaf-release-please[bot]](https://github.com/apps/liblaf-release-please) made their first contribution in [#16](https://github.com/liblaf/nox-recipes/pull/16)
 - [@liblaf](https://github.com/liblaf)
 - [@renovate[bot]](https://github.com/apps/renovate) made their first contribution in [#18](https://github.com/liblaf/nox-recipes/pull/18)
 
