@@ -92,7 +92,7 @@ Focused issues and pull requests are welcome. Please run `nox` before opening a 
 
 ---
 
-#### 📝 License
+### 📝 License
 
 Copyright © 2026 [liblaf](https://github.com/liblaf). <br />
 This project is [MIT](https://github.com/liblaf/nox-recipes/blob/main/LICENSE) licensed.
